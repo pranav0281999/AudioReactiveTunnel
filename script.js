@@ -1,5 +1,4 @@
-import * as THREE from "../build/three.module.js";
-import {RectAreaLightUniformsLib} from '../examples/jsm/lights/RectAreaLightUniformsLib.js';
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/build/three.module.js';
 
 const startButton = document.getElementById('startButton');
 startButton.addEventListener('click', main);
@@ -14,10 +13,6 @@ function main() {
     let scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
 
-    RectAreaLightUniformsLib.init();
-
-    const loader = new THREE.TextureLoader();
-
     const fov = 45;
     const aspect = 2;
     const near = 1;
@@ -25,17 +20,14 @@ function main() {
     let camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.set(0, 1.5 / 2, 0);
     camera.lookAt(far, 2, 0);
-    // camera.position.set(0, 500, 0);
-    // camera.lookAt(0, 0, 0);
 
     const roadWidth = 10;
     const roadLength = far;
     const roadHeight = 10;
-    //road
+    //tunnel
     {
         function createTunnelMaterial(color) {
             const roadMaterial = new THREE.MeshStandardMaterial();
-            // roadMaterial.emissive.set(0x1e1c1d);
             roadMaterial.color.set(color);
             roadMaterial.roughness = 1;
             roadMaterial.metalness = 0.2;
@@ -71,7 +63,7 @@ function main() {
     const headLightAngle = 20 * Math.PI / 180;
     const headLightPenumbra = 0.5;
     const headLightDecay = 2;
-    //person
+    //viewer in car
     {
         function createHeadlight() {
             return new THREE.SpotLight(headLightColor, headLightIntensity, headLightDistance, headLightAngle, headLightPenumbra, headLightDecay);
